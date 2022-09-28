@@ -30,4 +30,11 @@ a {
 }
 
 @layer components {
+  .btn {
+    @apply px-3 py-1 rounded;
+  }
+
+  .label {
+    @apply font-medium text-gray-100
+  }
 }
