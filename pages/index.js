@@ -4,8 +4,8 @@ import styles from '../styles/Home.module.css'
 
 export default function Home() {
   return (
-    <div>
-      Dashboard
+    <div className='my-5 w-full text-center'>
+      <p className=''>Pocket Law App</p>
     </div>
   )
 }
