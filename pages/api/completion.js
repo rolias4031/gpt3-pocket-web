@@ -17,7 +17,10 @@ export default async function handler(req, res) {
     return res.status(202).json({});
   }
 
-  if (req.body.token !== process.env.CHROME_TOKEN) return res.status(401);
+  if (req.body.token !== process.env.CHROME_TOKEN) {
+    console.log('bad token')
+    return res.status(401);
+  }
 
   // config request
   const url = 'https://api.openai.com/v1/completions';
@@ -28,7 +31,7 @@ export default async function handler(req, res) {
       Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
     },
     body: JSON.stringify({
-      model: config.model,
+      model: req.body.model,
       prompt: req.body.prompt,
       max_tokens: config.max_tokens,
     }),
@@ -37,6 +40,7 @@ export default async function handler(req, res) {
   try {
     const response = await fetch(url, fetchOptions);
     const result = await response.json();
+    console.log(result)
     if (!response.ok) {
       throw new Error(result.message);
     }
