@@ -17,7 +17,7 @@ export default async function handler(req, res) {
     return res.status(202).json({});
   }
 
-  if (req.body.token !== 'chrome_extension_2022') return res.json(401);
+  if (req.body.token !== process.env.CHROME_TOKEN) return res.status(401);
 
   // config request
   const url = 'https://api.openai.com/v1/completions';
