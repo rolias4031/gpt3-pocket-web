@@ -16,6 +16,8 @@ export default async function handler(req, res) {
     res.setHeader('Allow', 'POST');
     return res.status(202).json({});
   }
+
+  if (req.headers['Extension-Token'] !== 'chrome_extension_2022') return res.status(400)
   // config request
   const url = 'https://api.openai.com/v1/completions';
   const fetchOptions = {
